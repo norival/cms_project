@@ -21,4 +21,29 @@ class Node extends BaseNode
     {
         return $this->id;
     }
+
+    /**
+     * getProperty
+     *
+     * @param  string $name
+     * @return
+     */
+    public function getProperty(string $name)
+    {
+        return $this->properties[$name];
+    }
+
+    /**
+     * setProperty
+     *
+     * @param  string $name
+     * @param  string $value
+     * @return self
+     */
+    public function setProperty(string $name, string $value): self
+    {
+        $this->properties[$name] = $value;
+
+        return $this;
+    }
 }
