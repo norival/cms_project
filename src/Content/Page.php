@@ -12,6 +12,13 @@ class Page extends BaseNode
     /** @var $content */
     private $content;
 
+    public function __construct()
+    {
+        $this->setType('page');
+        $this->setTitle('');
+        $this->setContent('');
+    }
+
     /**
      * setTitle
      *
