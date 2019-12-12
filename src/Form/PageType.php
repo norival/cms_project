@@ -26,6 +26,7 @@ class PageType extends AbstractType
         $resolver->setDefaults([
             'data_class'      => Page::class,
             'csrf_protection' => false,
+            'is_edit'         => false,
         ]);
     }
 }

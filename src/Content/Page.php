@@ -85,10 +85,10 @@ class Page extends BaseNode
         return $this;
     }
 
-    public function buildNode()
+    public function buildNode($node)
     {
         // TODO: look if possible to use a trait here
-        $node = new Node();
+        /* $node = new Node(); */
 
         $node->setParent($this->getParent());
         $node->setPath($this->getPath());
@@ -101,6 +101,8 @@ class Page extends BaseNode
         $node->setProperty('title', $this->getTitle());
         $node->setProperty('content', $this->getContent());
 
+        // TODO: find antoher solution here, I think it is a bit dirty
+        // the node is returned so I can persist it more easily
         return $node;
     }
 }

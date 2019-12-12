@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Content\Page;
 use App\Form\PageType;
+use App\Form\UpdatePageType;
 use App\Repository\NodeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -130,6 +131,49 @@ class PageController extends AbstractController
         $json = $this->serializer->serialize($page, 'json');
 
         // send response
+        return new Response($json, 200, [
+            'Content-Type' => 'application/json'
+        ]);
+    }
+
+    /**
+     * @Route("/pages/{name}", name="page_update", methods={"PUT", "PATCH"})
+     */
+    public function update(Request $request, $name)
+    {
+        // get page by name
+        $node = $this->repository->findOneBy(['name' => $name]);
+
+        // if no page found, throw 404 error
+        if (!$node) {
+            throw $this->createNotFoundException(sprintf('No page found with name "%s"', $name));
+        }
+        dump($node->getId());
+
+        // bind data from the PUT request and submit the form
+        $page = new Page();
+        $page->bindNode($node);
+        $form = $this->createForm(UpdatePageType::class, $page);
+
+        /* $this->processForm($request, $form); */
+        $data = json_decode($request->getContent(), true);
+        $form->submit($data);
+
+        // set the date of modification
+        $page->setUpdatedAt(date_create());
+
+        // persist and flush object
+        $node = $page->buildNode($node);
+        $this->em->persist($node);
+        $this->em->flush();
+
+        // get the newly created page
+        $node = $this->repository->find($node->getId());
+        
+        // serialize page
+        $json = $this->serializer->serialize($page->bindNode($node), 'json');
+
+        // send a response
         return new Response($json, 200, [
             'Content-Type' => 'application/json'
         ]);

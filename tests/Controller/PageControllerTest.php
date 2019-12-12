@@ -73,4 +73,28 @@ class PageControllerTest extends TestCase
 
         $this->assertEquals(204, $response->getStatusCode());
     }
+
+    public function testUpdate()
+    {
+        $data = [
+            'title'   => 'My new page: updated',
+            'content' => 'The content of the new page',
+            'parent'  => '/pages',
+            'path'    => "/pages/page_2",
+            'name'    => "page_2",
+            'locale'  => 'fr',
+        ];
+
+        $response = self::$client->put(
+            '/pages/page_2',
+            [
+                'body' => \json_encode($data),
+            ]
+        );
+        $json = (string)$response->getBody();
+        $page = \json_decode($json, true);
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals('My new page: updated', $page['title']);
+    }
 }

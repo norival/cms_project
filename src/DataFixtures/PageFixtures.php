@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Content\Page;
+use App\Entity\Node;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -20,7 +21,8 @@ class PageFixtures extends Fixture
                  ->setContent("The content of the page $i")
                  ->setCreatedAt(date_create());
 
-            $manager->persist($page->buildNode());
+            $node = new Node();
+            $manager->persist($page->buildNode($node));
         }
 
         $manager->flush();
