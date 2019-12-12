@@ -102,6 +102,27 @@
     "doctrine/reflection": {
         "version": "v1.0.0"
     },
+    "eightpoints/guzzle-bundle": {
+        "version": "7.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "7.0",
+            "ref": "7babb21a3928e44e485391907e3abc346804e0d2"
+        },
+        "files": [
+            "config/packages/eight_points_guzzle.yaml"
+        ]
+    },
+    "guzzlehttp/guzzle": {
+        "version": "6.5.0"
+    },
+    "guzzlehttp/promises": {
+        "version": "v1.3.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.6.1"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -123,8 +144,14 @@
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/log": {
         "version": "1.1.2"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -137,6 +164,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "symfony/browser-kit": {
+        "version": "v4.4.1"
     },
     "symfony/cache": {
         "version": "v4.4.1"
@@ -160,6 +190,9 @@
             "config/bootstrap.php"
         ]
     },
+    "symfony/css-selector": {
+        "version": "v4.4.1"
+    },
     "symfony/debug": {
         "version": "v4.4.1"
     },
@@ -167,6 +200,9 @@
         "version": "v4.4.1"
     },
     "symfony/doctrine-bridge": {
+        "version": "v4.4.1"
+    },
+    "symfony/dom-crawler": {
         "version": "v4.4.1"
     },
     "symfony/dotenv": {
@@ -180,6 +216,9 @@
     },
     "symfony/event-dispatcher-contracts": {
         "version": "v1.1.7"
+    },
+    "symfony/expression-language": {
+        "version": "v4.4.1"
     },
     "symfony/filesystem": {
         "version": "v4.4.1"
