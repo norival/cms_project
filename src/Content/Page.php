@@ -36,7 +36,6 @@ class Page extends BaseNode
      * getTitle
      *
      * @return string|null
-     * @Serializer\VirtualProperty()
      */
     public function getTitle(): ?string
     {
@@ -60,7 +59,6 @@ class Page extends BaseNode
      * getContent
      *
      * @return ?|string
-     * @Serializer\VirtualProperty()
      */
     public function getContent(): ?string
     {
