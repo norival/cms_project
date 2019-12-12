@@ -73,6 +73,24 @@ class PageController extends AbstractController
     }
 
     /**
+     * @Route("/pages/{name}", name="page_delete", methods={"DELETE"})
+     */
+    public function delete($name)
+    {
+        // get page by name
+        $node = $this->repository->findOneBy(['name' => $name]);
+
+        if ($node) {
+            $this->em->remove($node);
+            $this->em->flush();
+        }
+
+        // return SUCCESS code even if the page does not exist because
+        // it means it has been successfully deleted
+        return new Response(null, 204);
+    }
+
+    /**
      * @Route("/pages", name="page_list", methods="GET")
      */
     public function list()

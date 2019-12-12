@@ -66,4 +66,11 @@ class PageControllerTest extends TestCase
         /* $this->assertEquals('page_1', $pages['pages'][0]['name']); */
         /* $this->assertCount(10, $pages['pages']); */
     }
+
+    public function testDelete()
+    {
+        $response = self::$client->delete('/pages/page_1');
+
+        $this->assertEquals(204, $response->getStatusCode());
+    }
 }
