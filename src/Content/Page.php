@@ -82,6 +82,7 @@ class Page extends BaseNode
 
     public function buildNode()
     {
+        // TODO: look if possible to use a trait here
         $node = new Node();
 
         $node->setParent($this->getParent());
@@ -90,6 +91,7 @@ class Page extends BaseNode
         $node->setCreatedAt($this->getCreatedAt());
         $node->setUpdatedAt($this->getUpdatedAt());
         $node->setUser($this->getUser());
+        $node->setType($this->getType());
 
         $node->setProperty('title', $this->getTitle());
         $node->setProperty('content', $this->getContent());
