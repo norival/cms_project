@@ -10,17 +10,21 @@ class NodeFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i <= 10; $i++) {
-            $node = new Node();
-            $node->setParent('/')
-                 ->setName("page_$i")
-                 ->setPath("/pages/page_$i")
-                 ->setLocale('en')
-                 ->setType(null)
-                 ->setCreatedAt(date_create());
+        $node = new Node();
+        $node->setParent(null)
+             ->setName('/')
+             ->setPath('/')
+             ->setLocale(null)
+             ->setCreatedAt(date_create());
+        $manager->persist($node);
 
-            $manager->persist($node);
-        }
+        $node = new Node();
+        $node->setParent('/')
+             ->setName('pages')
+             ->setPath('/pages')
+             ->setLocale(null)
+             ->setCreatedAt(date_create());
+        $manager->persist($node);
 
         $manager->flush();
     }
