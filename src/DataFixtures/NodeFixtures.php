@@ -16,9 +16,10 @@ class NodeFixtures extends Fixture
                  ->setName("page_$i")
                  ->setPath("/pages/page_$i")
                  ->setLocale('en')
+                 ->setType(null)
                  ->setCreatedAt(date_create());
 
-            $manager->persist($page->buildNode());
+            $manager->persist($node);
         }
 
         $manager->flush();
