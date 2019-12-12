@@ -280,6 +280,9 @@
             ".env"
         ]
     },
+    "symfony/form": {
+        "version": "v4.4.1"
+    },
     "symfony/framework-bundle": {
         "version": "4.4",
         "recipe": {
@@ -308,6 +311,9 @@
         "version": "v4.4.1"
     },
     "symfony/inflector": {
+        "version": "v4.4.1"
+    },
+    "symfony/intl": {
         "version": "v4.4.1"
     },
     "symfony/maker-bundle": {
@@ -339,6 +345,9 @@
             "config/packages/test/monolog.yaml"
         ]
     },
+    "symfony/options-resolver": {
+        "version": "v4.4.1"
+    },
     "symfony/orm-pack": {
         "version": "v1.0.7"
     },
@@ -357,6 +366,9 @@
             "phpunit.xml.dist",
             "tests/.gitignore"
         ]
+    },
+    "symfony/polyfill-intl-icu": {
+        "version": "v1.13.1"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.13.1"
@@ -447,6 +459,19 @@
             "config/packages/test/twig.yaml",
             "config/packages/twig.yaml",
             "templates/base.html.twig"
+        ]
+    },
+    "symfony/validator": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "d902da3e4952f18d3bf05aab29512eb61cabd869"
+        },
+        "files": [
+            "config/packages/test/validator.yaml",
+            "config/packages/validator.yaml"
         ]
     },
     "symfony/var-dumper": {
