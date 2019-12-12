@@ -29,4 +29,19 @@ class PageControllerTest extends TestCase
         $this->assertEquals('page_1', $pages['pages'][0]['name']);
         $this->assertCount(10, $pages['pages']);
     }
+
+    public function testShow()
+    {
+        $response = self::$client->get('/pages/page_1');
+
+        $json = (string)$response->getBody();
+        $page = \json_decode($json, true);
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertIsArray($page);
+        $this->assertArrayHasKey('title', $page);
+        $this->assertCount(11, $page);
+        /* $this->assertEquals('page_1', $pages['pages'][0]['name']); */
+        /* $this->assertCount(10, $pages['pages']); */
+    }
 }

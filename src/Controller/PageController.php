@@ -21,7 +21,7 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/pages", name="page", methods="GET")
+     * @Route("/pages", name="page_list", methods="GET")
      */
     public function list()
     {
@@ -36,6 +36,26 @@ class PageController extends AbstractController
         
         // serialize table
         $json = $this->serializer->serialize(['pages' => $pages], 'json');
+
+        // send response
+        return new Response($json, 200, [
+            'Content-Type' => 'application/json'
+        ]);
+    }
+
+    /**
+     * @Route("/pages/{name}", name="page_get", methods="GET")
+     */
+    public function show($name)
+    {
+        // retrieve nodes from the database
+        $node = $this->repository->findOneBy(['type' => 'page', 'name' => $name]);
+
+        $page = new Page();
+        $page->bindNode($node);
+        
+        // serialize page
+        $json = $this->serializer->serialize($page, 'json');
 
         // send response
         return new Response($json, 200, [
