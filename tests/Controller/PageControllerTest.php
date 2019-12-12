@@ -3,10 +3,13 @@
 namespace App\Tests\Controller;
 
 use GuzzleHttp\Client;
-use PHPUnit\Framework\TestCase;
+use Liip\TestFixturesBundle\Test\FixturesTrait;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class PageControllerTest extends TestCase
+class PageControllerTest extends WebTestCase
 {
+    use FixturesTrait;
+
     private static $client;
 
     static public function setUpBeforeClass()
@@ -14,6 +17,14 @@ class PageControllerTest extends TestCase
         static::$client = new Client([
             'base_uri' => 'https://127.0.0.1:8000',
             'timeout'  => 2.0,
+        ]);
+    }
+
+    public function setUp()
+    {
+        $this->loadFixtures([
+            'App\DataFixtures\PageFixtures',
+            'App\DataFixtures\UserFixtures',
         ]);
     }
 
