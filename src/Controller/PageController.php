@@ -148,7 +148,6 @@ class PageController extends AbstractController
         if (!$node) {
             throw $this->createNotFoundException(sprintf('No page found with name "%s"', $name));
         }
-        dump($node->getId());
 
         // bind data from the PUT request and submit the form
         $page = new Page();
@@ -157,7 +156,7 @@ class PageController extends AbstractController
 
         /* $this->processForm($request, $form); */
         $data = json_decode($request->getContent(), true);
-        $form->submit($data);
+        $form->submit($data, $request->getMethod() != 'PATCH');
 
         // set the date of modification
         $page->setUpdatedAt(date_create());
