@@ -30,6 +30,28 @@ class PageControllerTest extends TestCase
         $this->assertCount(10, $pages['pages']);
     }
 
+    public function testNew()
+    {
+        $data = [
+            'title'   => 'My new page',
+            'content' => 'The content of the new page',
+            'parent'  => 'pages',
+            'path'    => '/pages/page_42',
+            'name'    => 'page_42',
+            'locale'  => 'fr',
+        ];
+
+        $response = self::$client->post('/pages', [
+            'body' => \json_encode($data),
+        ]);
+        $responseData = \json_decode($response->getBody(true), true);
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals('/pages/page_42', $response->getHeader('Location')[0]);
+        $this->assertArrayHasKey('name', $responseData);
+        $this->assertEquals('page_42', $responseData['name']);
+    }
+
     public function testShow()
     {
         $response = self::$client->get('/pages/page_1');
