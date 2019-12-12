@@ -27,7 +27,7 @@ class BaseNode
     protected $properties = [];
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $locale;
 
@@ -104,7 +104,7 @@ class BaseNode
         return $this->locale;
     }
 
-    public function setLocale(string $locale): self
+    public function setLocale(?string $locale): self
     {
         $this->locale = $locale;
 
