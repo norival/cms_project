@@ -124,6 +124,11 @@ class PageController extends AbstractController
         // retrieve nodes from the database
         $node = $this->repository->findOneBy(['type' => 'page', 'name' => $name]);
 
+        // throw not found exception if no node with that name
+        if (!$node) {
+            throw $this->createNotFoundException(sprintf('No page found with name "%s"', $name));
+        }
+
         $page = new Page();
         $page->bindNode($node);
         
