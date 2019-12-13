@@ -13,7 +13,8 @@
         <server name="SHELL_VERBOSITY" value="-1" />
         <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
         <server name="SYMFONY_PHPUNIT_VERSION" value="7.5" />
-        <env name="DATABASE_URL" value="sqlite://home/xavier/work/norival/cms/3_cms/var/data/test.sqlite" />
+        <env name="DATABASE_URL" value="mysql://cms_test:password@127.0.0.1:3306/cms3_test?serverVersion=10.4" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" />
     </php>
 
     <testsuites>
@@ -27,10 +28,6 @@
             <directory>src</directory>
         </whitelist>
     </filter>
-
-    <extensions>
-        <extension class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>
-    </extensions>
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />

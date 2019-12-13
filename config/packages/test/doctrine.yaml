@@ -1,5 +1,5 @@
 doctrine:
     dbal:
-        driver: pdo_sqlite
-        path: "%kernel.cache_dir%/test.db"
-        url: null
+        url: "mysql://cms_test:password@127.0.0.1:3306/cms3_test?serverVersion=10.4"
+        # driver: pdo_sqlite
+        # path: "%kernel.cache_dir%/test.db"
