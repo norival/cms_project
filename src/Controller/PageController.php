@@ -51,7 +51,7 @@ class PageController extends AbstractController
 
         // persist and flush object
         $node = new Node();
-        $node = $page->buildNode($node);
+        $node->update($page);
         $this->em->persist($node);
         $this->em->flush();
 
@@ -169,7 +169,7 @@ class PageController extends AbstractController
         $page->setUpdatedAt(date_create());
 
         // persist and flush object
-        $node = $page->buildNode($node);
+        $node->update($page);
         $this->em->persist($node);
         $this->em->flush();
 

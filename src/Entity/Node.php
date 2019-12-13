@@ -46,4 +46,36 @@ class Node extends BaseNode
 
         return $this;
     }
+
+    /**
+     * update
+     *
+     * Update the properties of the node
+     *
+     * @param  BaseNode $nodeData
+     * @return self
+     */
+    public function update(BaseNode $node): self
+    {
+        $nodeData = $node->toArray();
+
+        $this->setParent($nodeData['parent']);
+        $this->setPath($nodeData['path']);
+        $this->setName($nodeData['name']);
+        $this->setCreatedAt($nodeData['created_at']);
+        $this->setUpdatedAt($nodeData['updated_at']);
+        $this->setUser($nodeData['user']);
+
+        // filter to have the content of $this->properties
+        $nodeData = \array_filter($nodeData, function($prop) {
+            return !\property_exists(self::class, $prop);
+        }, ARRAY_FILTER_USE_KEY);
+
+        // fill the content of $this->properties
+        foreach ($nodeData as $property => $value) {
+            $this->setProperty($property, $value);
+        }
+
+        return $this;
+    }
 }

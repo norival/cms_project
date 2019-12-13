@@ -85,6 +85,27 @@ class Page extends BaseNode
         return $this;
     }
 
+    /**
+     * toArray
+     *
+     * Export the Page data as an array
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        $nodeData['parent']     = $this->getParent();
+        $nodeData['path']       = $this->getPath();
+        $nodeData['name']       = $this->getName();
+        $nodeData['created_at'] = $this->getCreatedAt();
+        $nodeData['updated_at'] = $this->getUpdatedAt();
+        $nodeData['user']       = $this->getUser();
+        $nodeData['title']      = $this->getTitle();
+        $nodeData['content']    = $this->getContent();
+
+        return $nodeData;
+    }
+
     public function buildNode($node)
     {
         // TODO: look if possible to use a trait here
