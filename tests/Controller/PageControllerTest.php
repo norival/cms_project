@@ -23,6 +23,7 @@ class PageControllerTest extends WebTestCase
     public function setUp()
     {
         $this->loadFixtures([
+            'App\DataFixtures\NodeFixtures',
             'App\DataFixtures\PageFixtures',
             'App\DataFixtures\UserFixtures',
         ]);
