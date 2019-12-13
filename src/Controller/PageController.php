@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Content\Page;
+use App\Entity\Node;
 use App\Form\PageType;
 use App\Form\UpdatePageType;
 use App\Repository\NodeRepository;
@@ -49,7 +50,8 @@ class PageController extends AbstractController
         // TODO set the user
 
         // persist and flush object
-        $node = $page->buildNode();
+        $node = new Node();
+        $node = $page->buildNode($node);
         $this->em->persist($node);
         $this->em->flush();
 
