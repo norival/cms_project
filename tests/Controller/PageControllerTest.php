@@ -128,4 +128,31 @@ class PageControllerTest extends WebTestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('updated', $page['content']);
     }
+
+    public function testValidationErrors()
+    {
+        $data = [
+            /* 'title'   => 'My new invalid page', */
+            'content' => 'The content of the new page',
+            'parent'  => 'pages',
+            'path'    => '/pages/page_invalid',
+            'name'    => 'page_invalid',
+            'locale'  => 'fr',
+        ];
+
+        $response = self::$client->post('/pages', [
+            'body' => \json_encode($data),
+        ]);
+
+        $responseData = \json_decode($response->getBody(true), true);
+
+        $this->assertEquals(400, $response->getStatusCode());
+
+        $this->assertArrayHasKey('type', $responseData);
+        $this->assertArrayHasKey('title', $responseData);
+        $this->assertArrayHasKey('errors', $responseData);
+
+        $this->assertArrayHasKey('title', $responseData['errors']);
+        $this->assertEquals('The page must have a title', $responseData['errors']['title'][0]);
+    }
 }

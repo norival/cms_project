@@ -44,6 +44,11 @@ class PageController extends AbstractController
         $data = json_decode($request->getContent(), true);
         $form->submit($data);
 
+        if (!$form->isValid()) {
+            /* dump((string) $form->getErrors(true, false)); */
+            /* die; */
+        }
+
         // set the date of creation
         $page->setCreatedAt(date_create());
 

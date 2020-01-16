@@ -3,10 +3,14 @@
 namespace App\Content;
 
 use App\Entity\Node;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Page extends BaseNode
 {
-    /** @var $title */
+    /**
+     * @var $title
+     * @Assert\NotBlank(message="The page must have a title")
+     */
     private $title;
 
     /** @var $content */
